@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 
 import ShopPage from "./pages/shop/ShopPage.component";
 import Header from "./components/header/Header.component";
-import SignInSignOutPage from "./pages/sign-in-sign-out/SignInSignOut.component";
+import SignInSignUpPage from "./pages/sign-in-sign-up/SignInSignUp.component";
 
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
@@ -37,19 +37,15 @@ class App extends Component {
               },
             },
             () => {
-              console.log(this.state.currentUser);
+              console.log({ authenticatedUser: this.state.currentUser });
             }
           );
 
           // console.log(snapshot.data());
           // console.log(snapshot.id);
         });
-      }
 
-      this.setState({ currentUser: userAuth });
-
-      if (userAuth) {
-        console.log({ AuthenticatedUser: userAuth.displayName });
+        this.setState({ currentUser: userAuth });
       }
     });
   }
@@ -62,7 +58,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/signin" component={SignInSignOutPage} />
+          <Route path="/signin" component={SignInSignUpPage} />
         </Switch>
       </div>
     );
