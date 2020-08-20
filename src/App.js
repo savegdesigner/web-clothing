@@ -5,12 +5,12 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import ShopPage from "./pages/shop/ShopPage.component";
 import Header from "./components/header/Header.component";
 import SignInSignUpPage from "./pages/sign-in-sign-up/SignInSignUp.component";
+import CheckoutPage from "./pages/checkout/Checkout.component";
 
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
-
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 
@@ -63,6 +63,7 @@ class App extends Component {
               this.props.currentUser ? <Redirect to="/" /> : <SignInSignUpPage />
             }
           />
+          <Route exact path="/checkout" component={CheckoutPage} />
         </Switch>
       </div>
     );
